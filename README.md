@@ -1,2 +1,2 @@
 # markour
-Create your own markup language.
+A JavaScript program that reads custom markup and renders HTML
