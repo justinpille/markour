@@ -48,7 +48,7 @@ function readRules(src) {
   return rules;
 }
 
-function useRules(src, data) {
+function prepareSrc(src, data) {
 
   // Add line breaks
   function breakLines(lines) {
