@@ -29,4 +29,21 @@ function markour(src) {
   var mkLocations = findMK(lines); // Array of line numbers where mk declaration is found
   var patternVals = getVals(mkLocations, lines, 1); // Values of the next line after mk declaration
   var resultsVals = getVals(mkLocations, lines, 2); // Values of the 2nd line after mk declaration
+
+
+  function buildData(mkLocations, patternVals, resultsVals) {
+    var rules = [];
+    for (var i = 0; i < mkLocations.length; i++) {
+      rules.push({
+        startingAt: mkLocations[i],
+        pattern: patternVals[i],
+        result: resultsVals[i]
+      })
+    }
+    return (rules);
+  }
+
+
+  var rules = buildData(mkLocations, patternVals, resultsVals);
+  return rules;
 }
