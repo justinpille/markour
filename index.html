@@ -6,8 +6,7 @@
   <title>Markour</title>
   <link rel="stylesheet" href="css/normalize.css" />
   <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
-  <script src="readRules.js"></script>
-  <script src="useRules.js"></script>
+  <script src="markour.js"></script>
   <style>
     html {
       background-color: #404040;
@@ -42,10 +41,9 @@
 
     function parse() {
       var src = $('#edit').val();
-      var data = markour(src);
-      populate(JSON.stringify(data));
-      var result = useRules(data);
-      console.log(result);
+      var data = readRules(src);
+      var result = useRules(src, data);
+      populate(result);
     }
   </script>
   <textarea onkeyup="parse();" id="edit" rows="40" cols="80"></textarea>
