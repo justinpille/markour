@@ -17,39 +17,76 @@
       position: fixed;
       left: 0;
       top: 0;
-      width: 582px;
-      height: 619px;
+      width: 33%;
+      height: 100%;
       background-color: white;
     }
 
-    #render {
+    #text {
+      position: fixed;
+      left: 33%;
+      bottom: 0;
+      width: 33%;
+      height: 50%;
+      background-color: black;
+      color: white;
+    }
+
+    #data {
+      position: fixed;
+      left: 33%;
+      top: 0;
+      width: 33%;
+      height: 50%;
+      background-color: lightgreen;
+      color: black;
+    }
+
+    #rendered {
       position: fixed;
       right: 0;
       top: 0;
-      width: 582px;
-      height: 619px;
-      background-color: black;
-      color: white;
+      width: 34%;
+      height: 100%;
+      background-color: lightblue;
+      color: black;
+    }
+
+    textarea {
+      border: none;
     }
   </style>
 </head>
 
 <body>
   <script>
-    function populate(html) {
-      $('#render').html(html);
+    function populate(text) {
+      $('#text').html(text);
     }
 
-    function parse() {
+    function showTree(data) {
+      $('#data').html(JSON.stringify(data));
+    }
+
+    function render(text){
+      $('#rendered').html(text);
+    }
+
+    function readIt() {
       var src = $('#edit').val();
-      var data = readRules(src);
-      var prepped = prepareSrc(src, data);
-      var result = applyRules(prepped, data);
-      populate(result);
+      var result = run(src);
+      var data = result[0];
+      var text = result[1];
+      populate(text);
+      showTree(data);
+      var final = applyIt(text, data);
+      render(final);
     }
   </script>
-  <textarea onkeyup="parse();" id="edit" rows="40" cols="80"></textarea>
-  <div id="render"></div>
+  <textarea onkeyup="readIt();" id="edit"></textarea>
+  <div id="text">text</div>
+  <div id="data">data</div>
+  <div id="rendered">final</div>
 </body>
 
 </html>
