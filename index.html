@@ -6,6 +6,7 @@
   <title>Markour</title>
   <link rel="stylesheet" href="css/normalize.css" />
   <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+  <script src="markour.js"></script>
   <style>
     html {
       background-color: #404040;
@@ -38,34 +39,9 @@
       $('#render').html(html);
     }
 
-    function checkChar(char) {
-      result = '';
-      switch (char) {
-        case '*':
-          result = '<h1>';
-          break;
-        case '%':
-          result = '</h1>'
-          break;
-        default:
-          result = char;
-      }
-      return result;
-    }
-
-    function transform(src) {
-      var result = '';
-      var array = src.split('');
-      for (var i = 0; i < array.length; i++) {
-        var transformed = checkChar(array[i]);
-        result += transformed;
-      }
-      return result;
-    }
-
     function parse() {
       var src = $('#edit').val();
-      result = transform(src);
+      result = markour(src);
       populate(result);
     }
   </script>
