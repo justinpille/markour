@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Markour</title>
+  <link rel="stylesheet" href="css/reset.css" />
+  <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+  <style>
+    html {
+      background-color: #404040;
+    }
+
+    #edit {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 582px;
+      height: 619px;
+      background-color: white;
+    }
+
+    #render {
+      position: fixed;
+      right: 0;
+      top: 0;
+      width: 582px;
+      height: 619px;
+      background-color: black;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <script>
+    function populate(html) {
+      $('#render').html(html);
+    }
+
+    function transform(src) {
+      var result = '';
+      var array = src.split('');
+      for (var i=0; i < array.length; i++){
+        result += array[i];
+      }
+      return result;
+    }
+
+    function parse() {
+      var src = $('#edit').val();
+      result = transform(src);
+      populate(result);
+    }
+  </script>
+  <textarea onkeyup="parse();" id="edit" rows="40" cols="80"></textarea>
+  <div id="render"></div>
+</body>
+
+</html>
