@@ -55,21 +55,34 @@
     textarea {
       border: none;
     }
+    pre {
+      margin: 0;
+    }
   </style>
 </head>
 
-<body>
+<body onload="testInput();">
   <script>
     function populate(text) {
       $('#text').html(text);
     }
 
     function showTree(data) {
-      $('#data').html(JSON.stringify(data));
+      var coded = JSON.stringify(data)
+        .replace(/</g, '&lt;')
+        .replace(/,/g, ',\n')
+        .replace(/\{/g, '{\n')
+        .replace(/\}/g, '\n}');
+      $('#data').html('<pre>' + coded + '</pre>');
     }
 
-    function render(text){
+    function render(text) {
       $('#rendered').html(text);
+    }
+
+    function testInput() {
+      $('#edit').html('sometext1\n::mk\n#::\n&lt;h1>:&lt;/h1>\nsometext2');
+      readIt();
     }
 
     function readIt() {

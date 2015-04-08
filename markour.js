@@ -3,7 +3,7 @@ function mkLines(str) {
 }
 function findMK(lines) {
   var mkLocations = [];
-  var mkGlyph = /:mk:/g;
+  var mkGlyph = /::mk/g;
   for (var i = 0; i < lines.length; i++) {
     if (mkGlyph.exec(lines[i]) !== null) {
       mkLocations.push(i);
