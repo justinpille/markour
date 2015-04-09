@@ -1,45 +1,42 @@
 function applyIt(text, data) {
 
-  var final = '';
+  var result = [];
 
-
-  /*
-    // If the line starts with '<!--', do nothing
-    // If the line starts with a user-defined pattern (before the delimiter), and if that pattern specifies '\n' after the delimiter, transform the whole line
-    // If the line starts with a user-defined pattern (before the delimiter), and that pattern doesn't specify '\n' after the delimiter, transform only what's inbetween the two sub-patterns
-    // If the line has a user-defined pattern embedded...
-
-    // Check for special symbols at the beginning of the line
-    // Return all data indexes that match
-    function beginsWithSymbol(line) {
-      var dataMatch = 0;
-      for (var i = 0; i < data.length; i++) {
-        var subPatA = data[i].pattern.split(0, '::');
-        var regex = /subPatA/g;
-        var result = regex.exec(line);
-        if (result !== null && result.index === 0) { //If it matches at the beginning of the line
-          dataMatch = i;
-        }
-      }
-      return dataMatch;
-    }
-
-*/
-  function commentCheck(text) {
-    var noComments = '';
-    for (var i = 0; i < text.length; i++) {
-      if (text[i].slice(0, 4) !== '<!--') { // Don't apply rules to comments
-        noComments += text[i];
+  // Apply each rule, one by one, to each line, one by one.
+  for (var i = 0; i < data.length; i++) { //For each rule
+    for (var j = 0; j < text.length; j++) { //Look for it on each line of text
+      if (j >= data[i].startingAt && text[j].slice(0, 4) !== '<!--') {
+        result[j] = applyRule(data[i], text[j]);
+      } else {
+        result[j] = text[j];
       }
     }
-    return noComments;
   }
 
+  function applyRule(thisRule, toThisText) {
+    switch (true) {
 
+      //The pattern is a block type, and the line of text starts with this pattern
+      case /.::/.test(thisRule.pattern) && toThisText.slice(0, thisRule.pattern.split('::')[0].length) === thisRule.pattern.split('::')[0] :
+        return 'found .::';
+        //return thisRule.result.split(':')[0] + toThisText + thisRule.result.split(':')[1];
 
-  final += commentCheck(text);
-  return final;
+        //The pattern is an inline type, and the line of text contains this pattern
+      case /.:./.test(thisRule.pattern):
+        return 'found .:.';
+        //return thisRule.result.split(':')[0] + toThisText + thisRule.result.split(':')[1];
 
+        //The pattern is a replace type, and the line of text contains the replace symbol
+      case /:.:/.test(thisRule.pattern):
+        return 'found :.:';
+
+        //
+      default:
+        return toThisText;
+    }
+  }
+
+  return result;
 
 
 }
