@@ -5,98 +5,15 @@
   <meta charset="UTF-8" />
   <title>Markour</title>
   <link rel="stylesheet" href="css/normalize.css" />
+  <link rel="stylesheet" href="css/app.css" />
   <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
   <script src="applyRules.js"></script>
   <script src="markour.js"></script>
-  <style>
-    html {
-      background-color: #404040;
-    }
-
-    #edit {
-      position: fixed;
-      left: 0;
-      top: 0;
-      width: 33%;
-      height: 100%;
-      background-color: white;
-    }
-
-    #text {
-      position: fixed;
-      left: 33%;
-      bottom: 0;
-      width: 33%;
-      height: 50%;
-      background-color: black;
-      color: white;
-    }
-
-    #data {
-      position: fixed;
-      left: 33%;
-      top: 0;
-      width: 33%;
-      height: 50%;
-      background-color: lightgreen;
-      color: black;
-    }
-
-    #rendered {
-      position: fixed;
-      right: 0;
-      top: 0;
-      width: 34%;
-      height: 100%;
-      background-color: lightblue;
-      color: black;
-    }
-
-    textarea {
-      border: none;
-    }
-    pre {
-      margin: 0;
-    }
-  </style>
 </head>
 
 <body onload="testInput();">
-  <script>
-    function populate(text) {
-      $('#text').html(text);
-    }
-
-    function showTree(data) {
-      var coded = JSON.stringify(data)
-        .replace(/</g, '&lt;')
-        .replace(/,/g, ',\n')
-        .replace(/\{/g, '{\n')
-        .replace(/\}/g, '\n}');
-      $('#data').html('<pre>' + coded + '</pre>');
-    }
-
-    function render(text) {
-      $('#rendered').html(text);
-    }
-
-    function testInput() {
-      $('#edit').html('sometext1\n::mk\n#::\n&lt;h1>:&lt;/h1>\nsometext2\n<!--comment-->');
-      readIt();
-    }
-
-    function readIt() {
-      var src = $('#edit').val();
-      var result = run(src);
-      var data = result[0];
-      var text = result[1];
-      populate(text);
-      showTree(data);
-      var final = applyIt(text, data);
-      render(final);
-    }
-  </script>
-  <textarea onkeyup="readIt();" id="edit"></textarea>
+  <script src="ui.js"></script>
+  <div contenteditable onkeyup="update();" id="edit"></div>
   <div id="text">text</div>
   <div id="data">data</div>
   <div id="rendered">Final</div>

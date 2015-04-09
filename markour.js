@@ -57,7 +57,7 @@ function commOut(brokenLines, data) {
 
 
 
-function run(src) {
+function markour(src) {
   var lines = mkLines(src); // Array where each index is a line number
   function prepData(lines){
     var mkLocations = findMK(lines); // Array of line numbers where mk declaration is found

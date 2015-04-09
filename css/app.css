@@ -1,0 +1,46 @@
+html {
+  background-color: #404040;
+}
+#edit {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 33%;
+  height: 100%;
+  background-color: white;
+  padding: 10px;
+  box-sizing: border-box;
+}
+#edit:focus {
+  box-shadow: inset 0 0 10px lightgreen;
+}
+#text {
+  position: fixed;
+  left: 33%;
+  bottom: 0;
+  width: 33%;
+  height: 50%;
+  background-color: black;
+  color: white;
+}
+#data {
+  position: fixed;
+  left: 33%;
+  top: 0;
+  width: 33%;
+  height: 50%;
+  background-color: lightgreen;
+  color: black;
+}
+#rendered {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 34%;
+  height: 100%;
+  background-color: lightblue;
+  color: black;
+}
+pre {
+  margin: 0;
+}
