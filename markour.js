@@ -62,8 +62,8 @@ function markour(src) {
   function prepData(lines){
     var mkLocations = findMK(lines); // Array of line numbers where mk declaration is found
     var patternVals = getVals(mkLocations, lines, 1); // Values of the next line after mk declaration
-    var resultsVals = getVals(mkLocations, lines, 2); // Values of the 2nd line after mk declaration
-    return buildData(mkLocations, patternVals, resultsVals);
+    var effectVals = getVals(mkLocations, lines, 2); // Values of the 2nd line after mk declaration
+    return buildData(mkLocations, patternVals, effectVals);
   }
   function prepText(lines, data){
     var brokenLines = breakLines(lines);

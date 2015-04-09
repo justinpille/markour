@@ -1,38 +1,37 @@
-h1, h2 {
+p, h1, h2 {
   background-color: lightgray;
   color: #333;
   margin: 0;
   padding: 0;
 }
+p {
+  font-size: 16pt;
+}
+code {
+  font-weight: bold;
+}
 h2 {
   font-style: italic;
+  font-size: 12pt;
 }
-.editBox {
+textarea { /* To Do: http://alistapart.com/article/expanding-text-areas-made-elegant */
+  border: none;
+  outline: none;
+  resize: none;
+  width: 100%;
   min-height: 100px;
   padding: 10px;
   box-sizing: border-box;
 }
-.editBox:focus {
+textarea:focus {
   box-shadow: inset 0 0 10px darkgreen;
-}
-#edit {
-  background-color: white;
-}
-#text {
-  background-color: black;
-  color: white;
-}
-#text:focus {
-  box-shadow: inset 0 0 10px white;
-}
-#data {
-  background-color: lightgreen;
-  color: black;
 }
 #data pre {
   margin: 0;
 }
-#rendered {
-  background-color: lightblue;
-  color: black;
+label {
+  position: absolute;
+  right: 0;
+  color: darkgray;
+  margin: 10px;
 }
