@@ -14,10 +14,9 @@ function testInput() {
 
 function update() {
   var input = markour($('#edit').html()); //returns a 2-d array
-  var data = input[0];
-  var text = input[1];
-  $('#text').html(text)
-  showTree(data);
-  var final = applyIt(text, data);
+  console.log(input);
+  $('#text').html(input[1])
+  showTree(input[0]);
+  var final = applyIt(input[1], input[0]);
   $('#rendered').html(final);
 }

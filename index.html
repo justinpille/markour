@@ -7,16 +7,16 @@
   <link rel="stylesheet" href="css/normalize.css" />
   <link rel="stylesheet" href="css/app.css" />
   <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+  <script src="ui.js"></script>
   <script src="applyRules.js"></script>
   <script src="markour.js"></script>
 </head>
 
 <body onload="testInput();">
-  <script src="ui.js"></script>
-  <div contenteditable onkeyup="update();" id="edit"></div>
-  <div id="text">text</div>
-  <div id="data">data</div>
-  <div id="rendered">Final</div>
+  <div contenteditable id="edit" class="editBox" onkeyup="update();"></div>
+  <div contenteditable id="text" class="editBox" onblur="update();"></div>
+  <div contenteditable id="data" class="editBox" onblur="update();"></div>
+  <div contenteditable id="rendered" class="editBox" onblur="update();"></div>
 </body>
 
 </html>
