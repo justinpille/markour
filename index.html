@@ -13,9 +13,14 @@
 </head>
 
 <body onload="testInput();">
+  <h1>This input</h1>
   <div contenteditable id="edit" class="editBox" onkeyup="update();"></div>
+  <h1>Is Seperated into two parts</h1>
+  <h2>One is text</h2>
   <div contenteditable id="text" class="editBox" onblur="update();"></div>
+  <h2>The other is data</h2>
   <div contenteditable id="data" class="editBox" onblur="update();"></div>
+  <h1>Then the two parts are reconciled</h1>
   <div contenteditable id="rendered" class="editBox" onblur="update();"></div>
 </body>
 
