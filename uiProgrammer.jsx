@@ -4,9 +4,12 @@ var EditBox = React.createClass({
     this.props.onCh(event);
   },
   render: function() {
+    var style = {
+      display: this.props.val[0] ? 'block' : 'none'
+    };
     return (
       <div className="EditBox">
-        <label htmlFor={this.props.ident}>{this.props.plHold}</label>
+        <label style={style} htmlFor={this.props.ident}>{this.props.plHold}</label>
         <textarea placeholder={this.props.plHold} id={this.props.ident} value={this.props.val} onChange={this.handleChange}></textarea>
       </div>
     );
@@ -30,16 +33,23 @@ var App = React.createClass({
       lines: input.split(/\r?\n|\r/)
     });
   },
+  showTree: function(obj) {
+    var str = JSON.stringify(obj)
+      .replace(/</g, '&lt;')
+      .replace(/,/g, ',\n')
+      .replace(/\{/g, '{\n')
+      .replace(/\}/g, '\n}');
+      return (str);
+  },
   render: function() {
     return (
       <div classNameName="app">
 
-        <h1>Input:</h1>
-        <p>Saved in <code>App.state.input</code></p>
+        <p>The input box uses React's special "onChange" attribute to fire App.handleChange.</p>
         <EditBox  plHold="Input" ident="input" val={this.state.input} onCh={this.handleChange} />
 
-        <p>Input is passed to a func: <code>App.mkLines</code>, that returns an array where each item is a line of text</p>
-        <EditBox  plHold="Make Lines" ident="mkLines" val={this.state.lines} onCh={this.handleChange} />
+        <p>App.handleChange sets component state based on the input</p>
+        <EditBox  plHold="State" ident="state" val={this.showTree(this.state)} onCh={this.handleChange} />
 
         <p>Arr: <code>mkLocations</code> stores the line numbers where a rule declaration (::mk) exists</p>
         <textarea id="mkLocations" onBlur={this.update}></textarea>
